@@ -1,1 +1,0 @@
-const mappa = new Mappa('Leaflet');

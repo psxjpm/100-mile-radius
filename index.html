@@ -49,5 +49,15 @@ var circle = L.circle([51.508, -0.11], {
 }).addTo(map);
 </script>
 
+<script>
+	function onMapClick(e){
+		alert("You clicked the map at " + e.latlng);
+	}
+
+	map.on('click', onMapClick)
+	
+</script>
+	
+
 </body>
 </html>

@@ -50,14 +50,16 @@ var circle = L.circle([51.508, -0.11], {
 </script>
 
 <script>
+	var popup = L.popup();
 	function onMapClick(e){
-		alert("You clicked the map at " + e.latlng);
+		popup
+			.setLatLng(e.latlng)
+			.setContent("You clicked the map at " + e.latlng.toString())
+			.openOn(map);
 	}
 
 	map.on('click', onMapClick)
-	
 </script>
 	
-
 </body>
 </html>

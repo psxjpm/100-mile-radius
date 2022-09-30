@@ -3,15 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-	<!-- 	 -->
-
 	<title>100 Mile Radius</title>
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js" type="text/javascript"></script>
+	<script src="https://unpkg.com/mappa-mundi/dist/mappa.min.js" type="text/javascript"></script>
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
     <script src="sketch.js"></script>
 
-	<style>
+	<!-- <style>
 		body {
 			padding: 0;
 			margin: 0;
@@ -20,70 +20,81 @@
 			height: 100vh;
 			width: 100vw;
 		}
-		/* .leaflet-container {
+		.leaflet-container {
 			height: 400px;
 			width: 600px;
 			max-width: 100%;
 			max-height: 100%;
-		} */
-	</style>
-	
+		}
+	</style> -->
 </head>
+
 <body>
 
+	<script>
+		let myMap;
+		let canvas;
+		const mappa = new Mappa('Leaflet');
 
-<div id="map" style="width: 600px; height: 400px;"></div>
-<script>
+		function setup(){
 
-	var map = L.map('map');
-	map.locate({setView: true, maxZoom: 19});
+			canvas = createCanvas(640,640);
+			background(100);
+		}
 
-	var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 19,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}).addTo(map);
+		function draw(){}
+	</script>
 
-</script>
+	<!-- <div id="map" style="width: 600px; height: 400px;"></div>
+	<script>
+		var map = L.map('map');
+		map.locate({setView: true, maxZoom: 19});
 
-<script>
-	function onLocationFound(e){
-		var radius = e.accuracy;
+		var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 19,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		}).addTo(map);
+	</script>
 
-		L.marker(e.latlng).addTo(map)
-			.bindPopup("You are within" + radius + " meters from this point").openPopup();
+	<script>
+		function onLocationFound(e){
+			var radius = e.accuracy;
 
-		L.circle(e.latlng, radius).addTo(map);
-	}
-	map.on('locationfound', onLocationFound);
-</script>
+			L.marker(e.latlng).addTo(map)
+				.bindPopup("You are within" + radius + " meters from this point").openPopup();
 
-<script>
-	function onLocationFound(e){
-		alert(e.message);
-	}
-	map.on('locationerror', onLocationError);
-</script>
+			L.circle(e.latlng, radius).addTo(map);
+		}
+		map.on('locationfound', onLocationFound);
+	</script>
 
-<script>
-var circle = L.circle([51.508, -0.11], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
-}).addTo(map);
-</script>
+	<script>
+		function onLocationFound(e){
+			alert(e.message);
+		}
+		map.on('locationerror', onLocationError);
+	</script>
 
-<script>
-	var popup = L.popup();
-	function onMapClick(e){
-		popup
-			.setLatLng(e.latlng)
-			.setContent("You clicked the map at " + e.latlng.toString())
-			.openOn(map);
-	}
+	<script>
+		var circle = L.circle([51.508, -0.11], {
+			color: 'red',
+			fillColor: '#f03',
+			fillOpacity: 0.5,
+			radius: 500
+		}).addTo(map);
+	</script>
 
-	map.on('click', onMapClick)
-</script>
+	<script>
+		var popup = L.popup();
+		function onMapClick(e){
+			popup
+				.setLatLng(e.latlng)
+				.setContent("You clicked the map at " + e.latlng.toString())
+				.openOn(map);
+		}
+
+		map.on('click', onMapClick)
+	</script> -->
 	
 </body>
 </html>

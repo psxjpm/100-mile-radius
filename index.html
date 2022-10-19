@@ -23,7 +23,15 @@
     <script>
       // initialize Leaflet - Cromford Mills coordinates
       var map = L.map('map').setView({lon: -1.5558952588948685, lat: 53.10908834929797}, 20);
-      var marker; //in and out points
+
+      var inIcon = L.icon({
+        iconUrl: 'IN.png',
+        iconSize:     [50, 50], // size of the icon
+        iconAnchor:   [22, 94],
+        popupAnchor:  [-3, -76] 
+      }); 
+
+      L.marker([53.10908834929797, -1.5558952588948685], {icon: inIcon}).addTo(map);
 
       var popup = L.popup();
 

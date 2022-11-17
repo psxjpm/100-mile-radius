@@ -24,26 +24,54 @@
       // initialize Leaflet - Cromford Mills coordinates
       var map = L.map('map').setView({lon: -1.5558952588948685, lat: 53.10908834929797}, 20);
 
+      //TODO - define icon class
       var inIcon = L.icon({
         iconUrl: 'IN.png',
         iconSize:     [50, 50], // size of the icon
-        iconAnchor:   [22, 94],
-        popupAnchor:  [-3, -76] 
+        // TODO
+        // resize the icon as you zoom out
       }); 
 
-      L.marker([53.10908834929797, -1.5558952588948685], {icon: inIcon}).addTo(map);
-
-      var popup = L.popup();
+      
+      var marker = L.marker([53.10908834929797, -1.5558952588948685], {icon: inIcon});
 
       function onMapClick(e) {
-        popup
+        var click = e.latlng;
+        var locs = {lon: e.latlng.lon(), lat: e.latlng.lat()}
+        console.log(locs);
+        marker
         .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
+        .addTo(map).bindPopup('I am a marker');
       }
-      
       map.on('click', onMapClick);
 
+
+      // function onMapClick(e) {
+      //   var click = event.latLng;
+      //   var locs = {lat: event.latLng.lat(), lng: event.latLng.lng()};
+      //   var n = arePointsNear(user, locs, diameter);
+      //   console.log(locs);
+        
+      //   if(n){
+      //     marker = new L.Marker({
+      //       map: map,
+      //       position: locs,
+      //       label: {
+      //         text:"I", //marking all jobs inside radius with I
+      //         color:"white"
+      //       }
+      //     });
+      //   }else{
+      //     marker = new google.maps.Marker({
+      //       map: map,
+      //       position: locs,
+      //       label: {
+      //         text:"O", //marking all jobs outside radius with O
+      //         color:"white"
+      //       }
+      //     });
+      //   }}; 
+      
       // add the OpenStreetMap tiles
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,

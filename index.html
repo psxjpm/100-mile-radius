@@ -18,59 +18,44 @@
       }
     </style>
   </head>
+
   <body>
     <div id="map"></div>
     <script>
       // initialize Leaflet - Cromford Mills coordinates
       var map = L.map('map').setView({lon: -1.5558952588948685, lat: 53.10908834929797}, 20);
+      var user = {lon: -1.5558952588948685, lat: 53.10908834929797};
+      var diameter = 160934;
 
-      //TODO - define icon class
       var inIcon = L.icon({
         iconUrl: 'IN.png',
         iconSize:     [50, 50], // size of the icon
-        // TODO
-        // resize the icon as you zoom out
+        // TODO: resize the icon as you zoom out (define icon class?)
       }); 
 
-      
       var marker = L.marker([53.10908834929797, -1.5558952588948685], {icon: inIcon});
 
       function onMapClick(e) {
         var click = e.latlng;
-        var locs = {lon: e.latlng.lon(), lat: e.latlng.lat()}
+        var locs = {lon: e.latlng.lng, lat: e.latlng.lat};
+        var n = arePointsNear(user, locs, diameter);
         console.log(locs);
-        marker
-        .setLatLng(e.latlng)
-        .addTo(map).bindPopup('I am a marker');
+        console.log(n);
+
+        if (n){
+          marker
+          .setLatLng(e.latlng)
+          .addTo(map).bindPopup('Inside the 100 mile radius');
+        }
+        
+        else{
+          marker
+          .setLatLng(e.latlng)
+          .addTo(map).bindPopup('Outside the 100 mile radius');
+        }
+
       }
       map.on('click', onMapClick);
-
-
-      // function onMapClick(e) {
-      //   var click = event.latLng;
-      //   var locs = {lat: event.latLng.lat(), lng: event.latLng.lng()};
-      //   var n = arePointsNear(user, locs, diameter);
-      //   console.log(locs);
-        
-      //   if(n){
-      //     marker = new L.Marker({
-      //       map: map,
-      //       position: locs,
-      //       label: {
-      //         text:"I", //marking all jobs inside radius with I
-      //         color:"white"
-      //       }
-      //     });
-      //   }else{
-      //     marker = new google.maps.Marker({
-      //       map: map,
-      //       position: locs,
-      //       label: {
-      //         text:"O", //marking all jobs outside radius with O
-      //         color:"white"
-      //       }
-      //     });
-      //   }}; 
       
       // add the OpenStreetMap tiles
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -81,12 +66,21 @@
       var circle = L.circle([53.10908834929797, -1.5558952588948685],{
         color: 'red',
         fillColor: '#f03',
-         fillOpacity: 0.1,
+        fillOpacity: 0.1,
         radius: 160934 //100 miles in meters
       }).addTo(map);
 
       // show the scale bar on the lower left corner
       L.control.scale({imperial: true, metric: true}).addTo(map);
+      
+      function arePointsNear(checkPoint, centerPoint, m) { // credits to user:69083
+        var km = m/1000;
+        var ky = 40000 / 360;
+        var kx = Math.cos(Math.PI * centerPoint.lat / 180.0) * ky;
+        var dx = Math.abs(centerPoint.lon - checkPoint.lon) * kx;
+        var dy = Math.abs(centerPoint.lat - checkPoint.lat) * ky;
+        return Math.sqrt(dx * dx + dy * dy) <= km;
+      }
 
     </script>
   </body>

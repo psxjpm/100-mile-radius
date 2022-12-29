@@ -28,34 +28,25 @@
       var user = {lon: -1.5558952588948685, lat: 53.10908834929797};
       var diameter = 160934;
 
-      // var inIcon = L.icon({
-      //   iconUrl: 'IN.png',
-      //   iconSize:     [50, 50], // size of the icon
-      // }); 
-
-      // var marker = L.marker([53.10908834929797, -1.5558952588948685], {icon: inIcon});
 
       var marker;
-      //TODO: Add a button to submit coordinates to database
+
       function onMapClick(e) {
-        var click = e.latlng;
         var locs = {lon: e.latlng.lng, lat: e.latlng.lat};
         var n = arePointsNear(user, locs, diameter);
-        console.log(locs);
-        console.log(n);
+        // console.log(locs);
+        // console.log(n);
 
         if (n){
           marker
           .setLatLng(e.latlng)
-          // .addTo(map).bindPopup('Inside the 100 mile radius');
-          .openOn(map);
+          .addTo(map);
         }
         
         else{
           marker
           .setLatLng(e.latlng)
-          // .addTo(map).bindPopup('Outside the 100 mile radius');
-          .openOn(map);
+          .addTo(map);
         }
 
       }
@@ -67,12 +58,12 @@
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
       }).addTo(map);
 
-      var circle = L.circle([53.10908834929797, -1.5558952588948685],{
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.1,
-        radius: 160934 //100 miles in meters
-      }).addTo(map);
+      // var circle = L.circle([53.10908834929797, -1.5558952588948685],{
+      //   color: 'red',
+      //   fillColor: '#f03',
+      //   fillOpacity: 0.1,
+      //   radius: 160934 //100 miles in meters
+      // }).addTo(map);
 
       // show the scale bar on the lower left corner
       L.control.scale({imperial: true, metric: true}).addTo(map);

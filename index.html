@@ -28,25 +28,23 @@
       var user = {lon: -1.5558952588948685, lat: 53.10908834929797};
       var diameter = 160934;
 
-
-      var marker;
-
       function onMapClick(e) {
         var locs = {lon: e.latlng.lng, lat: e.latlng.lat};
         var n = arePointsNear(user, locs, diameter);
-        // console.log(locs);
-        // console.log(n);
+        console.log(locs);
+        console.log(n);
+        L.marker(e.latlng)
+        .addTo(map);
 
         if (n){
-          marker
-          .setLatLng(e.latlng)
-          .addTo(map);
+          L.marker(e.latlng)
+        .addTo(map);
+
         }
         
         else{
-          marker
-          .setLatLng(e.latlng)
-          .addTo(map);
+          L.marker(e.latlng)
+        .addTo(map);
         }
 
       }
@@ -57,13 +55,6 @@
         maxZoom: 19,
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
       }).addTo(map);
-
-      // var circle = L.circle([53.10908834929797, -1.5558952588948685],{
-      //   color: 'red',
-      //   fillColor: '#f03',
-      //   fillOpacity: 0.1,
-      //   radius: 160934 //100 miles in meters
-      // }).addTo(map);
 
       // show the scale bar on the lower left corner
       L.control.scale({imperial: true, metric: true}).addTo(map);

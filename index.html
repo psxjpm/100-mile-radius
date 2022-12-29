@@ -23,18 +23,20 @@
     <div id="map"></div>
     <script>
       // initialize Leaflet - Cromford Mills coordinates
+      //TODO: Use geolocation to centre the map at location
       var map = L.map('map').setView({lon: -1.5558952588948685, lat: 53.10908834929797}, 20);
       var user = {lon: -1.5558952588948685, lat: 53.10908834929797};
       var diameter = 160934;
 
+      //FIXME: Add default icon
       var inIcon = L.icon({
         iconUrl: 'IN.png',
         iconSize:     [50, 50], // size of the icon
-        // TODO: resize the icon as you zoom out (define icon class?)
       }); 
 
       var marker = L.marker([53.10908834929797, -1.5558952588948685], {icon: inIcon});
 
+      //TODO: Add a button to submit coordinates to database
       function onMapClick(e) {
         var click = e.latlng;
         var locs = {lon: e.latlng.lng, lat: e.latlng.lat};

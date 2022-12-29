@@ -23,19 +23,19 @@
     <div id="map"></div>
     <script>
       // initialize Leaflet - Cromford Mills coordinates
-      //TODO: Use geolocation to centre the map at location
+      //TODO: Use geolocation to centre the view and the user at location
       var map = L.map('map').setView({lon: -1.5558952588948685, lat: 53.10908834929797}, 20);
       var user = {lon: -1.5558952588948685, lat: 53.10908834929797};
       var diameter = 160934;
 
-      //FIXME: Add default icon
-      var inIcon = L.icon({
-        iconUrl: 'IN.png',
-        iconSize:     [50, 50], // size of the icon
-      }); 
+      // var inIcon = L.icon({
+      //   iconUrl: 'IN.png',
+      //   iconSize:     [50, 50], // size of the icon
+      // }); 
 
-      var marker = L.marker([53.10908834929797, -1.5558952588948685], {icon: inIcon});
+      // var marker = L.marker([53.10908834929797, -1.5558952588948685], {icon: inIcon});
 
+      var marker;
       //TODO: Add a button to submit coordinates to database
       function onMapClick(e) {
         var click = e.latlng;
@@ -47,13 +47,15 @@
         if (n){
           marker
           .setLatLng(e.latlng)
-          .addTo(map).bindPopup('Inside the 100 mile radius');
+          // .addTo(map).bindPopup('Inside the 100 mile radius');
+          .openOn(map);
         }
         
         else{
           marker
           .setLatLng(e.latlng)
-          .addTo(map).bindPopup('Outside the 100 mile radius');
+          // .addTo(map).bindPopup('Outside the 100 mile radius');
+          .openOn(map);
         }
 
       }

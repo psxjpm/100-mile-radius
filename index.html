@@ -22,15 +22,19 @@
   <body>
     <div id="map"></div>
     <script>
-      // initialize Leaflet - Cromford Mills coordinates
-      //TODO: Use geolocation to centre the view and the user at location
-      var map = L.map('map').setView({lon: -1.5558952588948685, lat: 53.10908834929797}, 20);
-      var user = {lon: -1.5558952588948685, lat: 53.10908834929797};
+      navigator.geolocation.getCurrentPosition(position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const data = {lat, lon};   
+
+      var map = L.map('map').locate({setView: true, maxZoom: 20});
+      var user = data;
       var diameter = 160934;
 
       function onMapClick(e) {
         var locs = {lon: e.latlng.lng, lat: e.latlng.lat};
         var n = arePointsNear(user, locs, diameter);
+        console.log(user);
         console.log(locs);
         console.log(n);
         L.marker(e.latlng)
@@ -38,13 +42,12 @@
 
         if (n){
           L.marker(e.latlng)
-        .addTo(map);
-
+          .addTo(map);
         }
         
         else{
           L.marker(e.latlng)
-        .addTo(map);
+          .addTo(map);
         }
 
       }
@@ -56,9 +59,16 @@
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
       }).addTo(map);
 
+      var circle = L.circle([52.94951704158299, -1.1707091331481936],{
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.1,
+        radius: 160934 //100 miles in meters
+      }).addTo(map);
+
       // show the scale bar on the lower left corner
       L.control.scale({imperial: true, metric: true}).addTo(map);
-      
+     
       function arePointsNear(checkPoint, centerPoint, m) { // credits to user:69083
         var km = m/1000;
         var ky = 40000 / 360;
@@ -68,6 +78,7 @@
         return Math.sqrt(dx * dx + dy * dy) <= km;
       }
 
+    });
     </script>
   </body>
 </html>

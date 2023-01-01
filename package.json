@@ -1,0 +1,22 @@
+{
+  "name": "100-mile-radius",
+  "version": "1.0.0",
+  "description": "A web app for displaying a map for people to indicate their position by touching a point in the map using a mobile device. The app will log the location of the device, the location selected in the map, the time the location was logged. A server will also log the total of people that have logged themselves in the app, along with the data mentioned above.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psxjpm/100-Mile-Radius.git"
+  },
+  "author": "Juan Martinez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/psxjpm/100-Mile-Radius/issues"
+  },
+  "homepage": "https://github.com/psxjpm/100-Mile-Radius#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

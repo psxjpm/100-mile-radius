@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    
     <style>
       html, body {
         height: 100%;
@@ -22,19 +25,16 @@
   <body>
     <div id="map"></div>
     <script>
-      navigator.geolocation.getCurrentPosition(position => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        const data = {lat, lon};   
 
       var map = L.map('map').locate({setView: true, maxZoom: 20});
-      var user = data;
       var diameter = 160934;
+      // create control and add to map
+      L.control.locate().addTo(map);
+
 
       function onMapClick(e) {
         var locs = {lon: e.latlng.lng, lat: e.latlng.lat};
         var n = arePointsNear(user, locs, diameter);
-        console.log(user);
         console.log(locs);
         console.log(n);
         L.marker(e.latlng)
@@ -59,6 +59,7 @@
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
       }).addTo(map);
 
+
       var circle = L.circle([52.94951704158299, -1.1707091331481936],{
         color: 'red',
         fillColor: '#f03',
@@ -78,7 +79,6 @@
         return Math.sqrt(dx * dx + dy * dy) <= km;
       }
 
-    });
     </script>
   </body>
 </html>

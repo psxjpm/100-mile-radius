@@ -31,6 +31,7 @@
       // create control and add to map
       L.control.locate().addTo(map);
 
+      //TODO: Unpack data method 
       const response = await fetch('/api',options);
       const json = await response.json();
       console.log(json);

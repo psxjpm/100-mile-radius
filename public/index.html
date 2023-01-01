@@ -49,15 +49,15 @@
                     root.append(geo, date);
                     document.body.append(root);
                 }
-
-                console.log(data);
             }
 
       function onMapClick(e) {
+        var user = document.body;
         var locs = {lon: e.latlng.lng, lat: e.latlng.lat};
         var n = arePointsNear(user, locs, diameter);
         console.log(locs);
         console.log(n);
+        console.log(user);
         L.marker(e.latlng)
         .addTo(map);
 

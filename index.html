@@ -31,6 +31,9 @@
       // create control and add to map
       L.control.locate().addTo(map);
 
+      const response = await fetch('/api',options);
+      const json = await response.json();
+      console.log(json);
 
       function onMapClick(e) {
         var locs = {lon: e.latlng.lng, lat: e.latlng.lat};

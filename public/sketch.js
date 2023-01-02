@@ -1,14 +1,16 @@
 //TODO: 
-//Gradient percentages
-//Line endpoints (ellipse and pointy fading endpoint)
-//Concentric circles opacity
-//Make arcs not circles
-//Frame border 
-//Text
-//Date
+/*Gradient percentages
+Line endpoints (ellipse and pointy fading endpoint)
+Concentric circles opacity*/
 
-//Optional:
-//Line textures
+//Desired: 
+/*Line textures
+Make arcs not circles*/
+
+//Post production:
+/*Frame border 
+Text
+Date*/
 
 let topcolor, bottomcolor;
 function setup() {

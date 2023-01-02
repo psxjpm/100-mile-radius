@@ -31,33 +31,33 @@
       // create control and add to map
       L.control.locate().addTo(map);
 
-      //TODO: Unpack data method 
-      getData();
-            async function getData() {
-                const response = await fetch('/api');
-                const data = await response.json();
+      async function getData() {
+          const response = await fetch('/api');
+          const data = await response.json();
 
-                for (item of data){
-                    const root = document.createElement('div');
-                    const geo = document.createElement('div');
-                    const date = document.createElement('div');
-                    const dateString = new Date(item.timestamp).toLocaleString();
+          for (item of data){
+              const root = document.createElement('div');
+              const geo = document.createElement('div');
+              const date = document.createElement('div');
+              const dateString = new Date(item.timestamp).toLocaleString();
 
-                    geo.textContent = `${item.lat}, ${item.lon}`;
-                    date.textContent = dateString;
+              geo.textContent = `${item.lat}, ${item.lon}`;
+              date.textContent = dateString;
 
-                    root.append(geo, date);
-                    document.body.append(root);
-                }
-            }
+              root.append(geo, date);
+              document.body.append(root);
+          }
+          //database contents
+          console.log(data);
+      }
 
+      user = {lat: 52.9506567, lon: -1.1709577};
       function onMapClick(e) {
-        var user = document.body;
+        getData();
         var locs = {lon: e.latlng.lng, lat: e.latlng.lat};
         var n = arePointsNear(user, locs, diameter);
         console.log(locs);
         console.log(n);
-        console.log(user);
         L.marker(e.latlng)
         .addTo(map);
 

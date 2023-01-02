@@ -20,19 +20,19 @@ app.get('/api', (request, response) => {
     });
 });
 
-//server code to send requests and receive responses
+//server code to send requests and receive responses in the client side
 app.post('/api', (request, response) => {
     const data = request.body;
     const timestamp = Date.now();
     data.timestamp = timestamp;
     //insert method to store lat and lon values
     database.insert(data);     
-    response.json(data
-    // {
-    //     status:'success',
-    //     timestamp: timestamp,
-    //     latitude: data.lat,
-    //     longitude: data.lon
-    // }
+    response.json(
+    {
+        status:'success',
+        timestamp: timestamp,
+        latitude: data.lat,
+        longitude: data.lon
+    }
     );
 });

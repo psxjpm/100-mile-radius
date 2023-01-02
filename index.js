@@ -10,6 +10,7 @@ app.use(express.json({limit: '1mb'}));
 const database = new Datastore('database.db');
 database.loadDatabase();
 
+//the api route is reused here to send a response back to the client from their get request in getData() when querying the data base
 app.get('/api', (request, response) => {
     database.find({}, (err, data) =>{
         if (err){
@@ -20,13 +21,16 @@ app.get('/api', (request, response) => {
     });
 });
 
-//server code to send requests and receive responses in the client side
+//route to receive post requests and send response back to the client side (editor.html)
 app.post('/api', (request, response) => {
     const data = request.body;
     const timestamp = Date.now();
     data.timestamp = timestamp;
-    //insert method to store lat and lon values
+
+    //insert method to store lat and lon values in the database
     database.insert(data);     
+    
+    //response to be sent to editor.html formatted in json
     response.json(
     {
         status:'success',

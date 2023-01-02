@@ -31,6 +31,7 @@
       // create control and add to map
       L.control.locate().addTo(map);
 
+      //Method to parse the post from the server and post in 'all.html' and create dom elements for the database queries
       async function getData() {
           const response = await fetch('/api');
           const data = await response.json();
@@ -47,7 +48,7 @@
               root.append(geo, date);
               document.body.append(root);
           }
-          //database contents
+          //database json contents in .db file
           console.log(data);
       }
 

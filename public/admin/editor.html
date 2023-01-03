@@ -11,8 +11,30 @@
         <h1>100 Mile Radius Editor</h1>
         <p>latitude: <span id="latitude"></span><br/></p>
         <p>longitude: <span id="longitude"></span><br/></p>
-        <button id="geolocate">Set 100 mile radius</button>
+        <button id="geolocate">Set 100 mile radius</button><br/>
+        <br/>
+        <form>
+            <div>
+                <label for="tickets"> Number of tickets sold:</label><br/>
+                <input type="number" id="tickets" name="tickets" required/>
+                <span class="validity"></span> 
+            </div>
+            <div>
+                <input type="submit"/>
+            </div>
+        </form>
+        <p>Venue brand colour</p>
+        <div>
+            <input type="color" id="color" name="color"
+                   value="#e66465">
+            <label for="color">Select colour</label>
+        </div>
+        
+
         <script>
+
+            //FIXME: The code below sends lat and lon to the server and inserts it in the database - we don't need this
+
             /* When the button is cliked it checks that geolocation is available and then 
             it calls get current position function from geolocation method which needs a call back function for position.
             This callback function then retrieves and assigns lad and lon to the dom elements*/

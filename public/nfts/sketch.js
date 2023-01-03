@@ -18,14 +18,17 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255,255,255);
 
-  // Draw a square at location (30, 20) with a side size of 55.
-  //Bottom color = Total tickets. Physical Audience (data from     Eventbrite) 61 orders / 90 tickets 
+  // Draw a square at location (30, 20) with a side size of 55 (??)
+
+  //TODO: This will be set in editor.html manually
+  //Bottom color = Total tickets. Physical Audience (data from Eventbrite) 61 orders / 90 tickets 
   topcolor = color(86, 193, 255);
   bottomcolor = color(148, 23, 81);
 
   for (let y=0; y<height; y++){
     
-    n = map(y,0,height, 0,1);
+    //n defines lerp (remap from ticket numbers and map inputs [])
+    n = map(y,0,height, 0,1); 
     
     let newcolor = lerpColor(topcolor, bottomcolor, n);
     stroke(newcolor);

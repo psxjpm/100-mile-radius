@@ -12,7 +12,11 @@ Make arcs not circles*/
 Text
 Date*/
 
+
 let topcolor, bottomcolor;
+function preload(){
+  
+}
 function setup() {
   //To resize canvas see https://p5js.org/reference/#/p5/resizeCanvas
   createCanvas(windowWidth, windowHeight);

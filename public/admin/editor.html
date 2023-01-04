@@ -12,24 +12,25 @@
         <p>latitude: <span id="latitude"></span><br/></p>
         <p>longitude: <span id="longitude"></span><br/></p>
         <button id="geolocate">Set 100 mile radius</button><br/>
+
         <br/>
-        <form>
-            <div>
-                <label for="tickets"> Number of tickets sold:</label><br/>
-                <input type="number" id="tickets" name="tickets" required/>
-                <span class="validity"></span> 
-            </div>
-            <div>
-                <input type="submit"/>
-            </div>
+        <form id="form" action="" onsubmit="data(event)">
+            <label for="tickets"> Number of tickets sold:</label><br/>
+            <input id="tickets"  name="tickets" type="text" required/>
+            <button type="submit">Submit</button>
         </form>
-        <p>Venue brand colour</p>
+       
+   
+        <br/>
         <div>
-            <input type="color" id="color" name="color"
-                   value="#e66465">
-            <label for="color">Select colour</label>
+            <label for="color">Venue brand colour:</label><br/>
+            <input id="color" type="color" name="color"
+                   value="#e66465" required>
+            <label for="color"><- Select colour</label>
         </div>
-        
+        <div>
+            <input type="submit"/>
+        </div>
 
         <script>"editor.js"</script>
     </body>

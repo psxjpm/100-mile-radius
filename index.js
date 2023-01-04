@@ -31,12 +31,12 @@ app.post('/api', (request, response) => {
     database.insert(data);     
     
     //response to be sent to editor.html formatted in json
-    response.json(
-    {
-        status:'success',
-        timestamp: timestamp,
-        latitude: data.lat,
-        longitude: data.lon
-    }
+    response.json(data
+    // {
+        // status:'success',
+        // timestamp: timestamp,
+        // latitude: data.lat,
+        // longitude: data.lon
+    // }
     );
 });

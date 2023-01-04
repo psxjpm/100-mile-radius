@@ -3,30 +3,10 @@ var diameter = 160934;
 // create control and add to map
 L.control.locate().addTo(map);
 
-//Method to parse the post from the server and post in 'all.html' and create dom elements for the database queries
-async function getData() {
-    const response = await fetch('/api');
-    const data = await response.json();
-
-    for (item of data){
-        const root = document.createElement('div');
-        const geo = document.createElement('div');
-        const date = document.createElement('div');
-        const dateString = new Date(item.timestamp).toLocaleString();
-
-        geo.textContent = `${item.lat}, ${item.lon}`;
-        date.textContent = dateString;
-
-        root.append(geo, date);
-        document.body.append(root);
-    }
-    //database json contents in .db file
-    console.log(data);
-}
-
+//TODO: Change location - find a way not to hardcode it
 user = {lat: 52.9506567, lon: -1.1709577};
+
 function onMapClick(e) {
-  getData();
   var locs = {lon: e.latlng.lng, lat: e.latlng.lat};
   var n = arePointsNear(user, locs, diameter);
   console.log(locs);
@@ -53,7 +33,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
 }).addTo(map);
 
-
+//TODO: delete this after demo and debugs
 var circle = L.circle([52.94951704158299, -1.1707091331481936],{
   color: 'red',
   fillColor: '#f03',

@@ -19,30 +19,27 @@ Date*/
 
 
 let topcolor, bottomcolor;
-// let fwriter;
 
-// getData();
-// async function getData() {
-//   const response = await fetch('/api');
-//   const data = await response.json();
-//   writer.write(data);
-//   writer.close()
-// }
+getData();
+async function getData() {
+  const response = await fetch('/api');
+  const data = await response.json();
+  console.log(data);
 
-function preload(){
-  table = loadTable("database.db", "json", "header");
-
+  for (item of data){
+  globalThis.colors = `${item.color}`;
+  console.log(colors);
+  }
 }
 
 function setup() {
   //To resize canvas see https://p5js.org/reference/#/p5/resizeCanvas
-  // fwriter= createWriter('user.json');
 
   createCanvas(windowWidth, windowHeight);
   background(255,255,255);
+  maxDiameter = 800;
 
   // Draw a square at location (30, 20) with a side size of 55 (??)
-
   //TODO: This will be set in editor.html manually
   //Bottom color = Total tickets. Physical Audience (data from Eventbrite) 61 orders / 90 tickets 
   topcolor = color(86, 193, 255);
@@ -121,42 +118,28 @@ function setup() {
     
     //LINES
     //TODO: Lines should have an ellipse at their endpoints
-
     //x1, y1 = 38, 31; x2, y2 = 300, 20;
     // Use line() function to draw line
-    stroke('#FFFB00');
-    strokeWeight(2);
-    line(windowWidth/2+10, windowHeight/2-7, 785, 195);
+
+    // stroke('#FFFB00');
+    // strokeWeight(2);
+    // line(windowWidth/2+10, windowHeight/2-7, 785, 195);
     
-    
-    fill("#bb1a1a");
-    stroke('#bb1a1a');
-    strokeWeight(2);
-    line(windowWidth/2-7, windowHeight/2-7, 185, 195);
-    
+    // fill("#bb1a1a");
+    // stroke('#bb1a1a');
+    // strokeWeight(2);
+    // line(windowWidth/2-7, windowHeight/2-7, 185, 195);
   }
 }
 
 function draw() {
-  //TODO: receive coordinates and plot here
-  // noFill();
-  // if (colour === '#522E6E'){
-  //   stroke('#522E6E');
-  //   strokeWeight(2);
-  //   circle(windowWidth/2, windowHeight/2, 500)
-  // }
-
-  let numRows = table.getRowCount();
-
-// Use a for loop to iterate through each row in the table
-for (let i = 0; i < numRows; i++) {
-  // Get the values from the columns in the row
-  let x = table.getNum(i, "x");
-  let y = table.getNum(i, "y");
-  let r = table.getNum(i, "r");
-
-  // Use the `ellipse` function to draw a circle with the values from the table
-  ellipse(x, y, r, r)}
+  noFill();
+  if (colors === '#522E6E'){
+    stroke('#522E6E');
+    strokeWeight(2);
+    circle(windowWidth/2, windowHeight/2, maxDiameter)
+  }
+  noLoop();
 }
     </script>
   </head>

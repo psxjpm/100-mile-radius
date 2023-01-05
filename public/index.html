@@ -28,88 +28,88 @@
     <div id="map"></div>
     <script>
     const map = L.map('map').locate({setView: true, maxZoom: 20});
-      const diameter = 160934;
-      const mileseg = 16093.4;
-      const r1 = diameter - mileseg * 9;
-      const r2 = diameter - mileseg * 8;
-      const r3 = diameter - mileseg * 7;
-      const r4 = diameter - mileseg * 6;
-      const r5 = diameter - mileseg * 5;
-      const r6 = diameter - mileseg * 4;
-      const r7 = diameter - mileseg * 3;
-      const r8 = diameter - mileseg * 2;
-      const r9 = diameter - mileseg;
+    const diameter = 160934;
+    const mileseg = 16093.4;
+    const r1 = diameter - mileseg * 9;
+    const r2 = diameter - mileseg * 8;
+    const r3 = diameter - mileseg * 7;
+    const r4 = diameter - mileseg * 6;
+    const r5 = diameter - mileseg * 5;
+    const r6 = diameter - mileseg * 4;
+    const r7 = diameter - mileseg * 3;
+    const r8 = diameter - mileseg * 2;
+    const r9 = diameter - mileseg;
   
-      //TODO: Automatically begin at start
-      L.control.locate().addTo(map);
-      
-      function showLocation(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude
-            globalThis.user = {lat, lon};
-         }
-      
-      if(navigator.geolocation) {
-        console.log("success!");
-        navigator.geolocation.getCurrentPosition(showLocation);
-          } else {
-              alert("Sorry, browser does not support geolocation!");
-          }
+    L.control.locate().addTo(map);
+    
+    function showLocation(position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude
+          globalThis.user = {lat, lon};
+        }
+    
+    if(navigator.geolocation) {
+      console.log("success!");
+      navigator.geolocation.getCurrentPosition(showLocation);
+        } else {
+            alert("Sorry, browser does not support geolocation!");
+        }
 
-      function onMapClick(e) {
-        var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
-        var n = arePointsNear(user, locs, diameter);
-        var c1 = arePointsNear(user, locs, r1);
-        var c2 = arePointsNear(user, locs, r2);
-        var c3 = arePointsNear(user, locs, r3);
-        var c4 = arePointsNear(user, locs, r4);
-        var c5 = arePointsNear(user, locs, r5);
-        var c6 = arePointsNear(user, locs, r6);
-        var c7 = arePointsNear(user, locs, r7);
-        var c8 = arePointsNear(user, locs, r8);
-        var c9 = arePointsNear(user, locs, r9);
+    function onMapClick(e) {
+      var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
+      var n = arePointsNear(user, locs, diameter);
+      var c1 = arePointsNear(user, locs, r1);
+      var c2 = arePointsNear(user, locs, r2);
+      var c3 = arePointsNear(user, locs, r3);
+      var c4 = arePointsNear(user, locs, r4);
+      var c5 = arePointsNear(user, locs, r5);
+      var c6 = arePointsNear(user, locs, r6);
+      var c7 = arePointsNear(user, locs, r7);
+      var c8 = arePointsNear(user, locs, r8);
+      var c9 = arePointsNear(user, locs, r9);
 
         // console.log(locs);
         // console.log(n);
         // console.log(user);
+      L.marker(e.latlng)
+      .addTo(map);
+    
+      if (n){
+        //true
         L.marker(e.latlng)
         .addTo(map);
-      
-        if (n){
-          //true
-          L.marker(e.latlng)
-          .addTo(map);
-          if (c1){console.log('inside 10 mile radius');}
-          else if (c2){console.log('inside 20 mile radius');}
-          else if (c3){console.log('inside 30 mile radius');}
-          else if (c4){console.log('inside 40 mile radius');}
-          else if (c5){console.log('inside 50 mile radius');}
-          else if (c6){console.log('inside 60 mile radius');}
-          else if (c7){console.log('inside 70 mile radius');}
-          else if (c8){console.log('inside 80 mile radius');}
-          else if (c9){console.log('inside 90 mile radius');}
-          else{console.log('inside 100 mile radius')}
-        }
-        
-        else{
-          L.marker(e.latlng)
-          .addTo(map);
-          console.log("outside 100 mile radius");
-          //TODO: add to db, and add attribute to indicate radius. Inidicate 100 here (or above). Re-use it in 10 mile radius.
-          const color = "#522E6E";
-
-          const data = {lat:e.latlng.lat, lon:e.latlng.lng, color};
-          const options = {
-            method: 'POST',
-            headers:{
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-          };
-          const response = fetch('/api',options);
-        }
+        if (c1){console.log('inside 10 mile radius');}
+        else if (c2){console.log('inside 20 mile radius');}
+        else if (c3){console.log('inside 30 mile radius');}
+        else if (c4){console.log('inside 40 mile radius');}
+        else if (c5){console.log('inside 50 mile radius');}
+        else if (c6){console.log('inside 60 mile radius');}
+        else if (c7){console.log('inside 70 mile radius');}
+        else if (c8){console.log('inside 80 mile radius');}
+        else if (c9){console.log('inside 90 mile radius');}
+        else{console.log('inside 100 mile radius')}
       }
-      map.on('click', onMapClick);
+      
+      else{
+        L.marker(e.latlng)
+        .addTo(map);
+        console.log("outside 100 mile radius");
+        //TODO: Inidicate 100 here (or above). Re-use it in 10 mile radius.
+        const color = "#522E6E";
+        const data = {lat:e.latlng.lat, lon:e.latlng.lng, color};
+        const options = {
+          method: 'POST',
+          headers:{
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+        const response = fetch('/api',options);
+        // const json = response.json();
+        // console.log(json);
+      }
+    }
+    map.on('click', onMapClick);
       
       // add the OpenStreetMap tiles
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

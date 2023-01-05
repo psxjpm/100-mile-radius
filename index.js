@@ -24,19 +24,6 @@ app.get('/api', (request, response) => {
 //route to receive post requests and send response back to the client side (editor.html)
 app.post('/api', (request, response) => {
     const data = request.body;
-    const timestamp = Date.now();
-    data.timestamp = timestamp;
-
-    //insert method to store lat and lon values in the database
     database.insert(data);     
-    
-    //response to be sent to editor.html formatted in json
-    response.json(data
-    // {
-        // status:'success',
-        // timestamp: timestamp,
-        // latitude: data.lat,
-        // longitude: data.lon
-    // }
-    );
+    response.json(data);
 });

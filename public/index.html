@@ -40,13 +40,13 @@
       const r8 = diameter - mileseg * 2;
       const r9 = diameter - mileseg;
   
+      //TODO: Automatically begin at start
       L.control.locate().addTo(map);
       
       function showLocation(position) {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude
             globalThis.user = {lat, lon};
-            console.log(globalThis.user);
          }
       
       if(navigator.geolocation) {
@@ -69,9 +69,9 @@
         var c8 = arePointsNear(user, locs, r8);
         var c9 = arePointsNear(user, locs, r9);
 
-        console.log(locs);
-        console.log(n);
-        console.log(user);
+        // console.log(locs);
+        // console.log(n);
+        // console.log(user);
         L.marker(e.latlng)
         .addTo(map);
       
@@ -94,9 +94,20 @@
         else{
           L.marker(e.latlng)
           .addTo(map);
-          console.log("outside 100 mile radius")
+          console.log("outside 100 mile radius");
+          //TODO: add to db, and add attribute to indicate radius. Inidicate 100 here (or above). Re-use it in 10 mile radius.
+          const color = "#522E6E";
+
+          const data = {lat:e.latlng.lat, lon:e.latlng.lng, color};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
         }
-      
       }
       map.on('click', onMapClick);
       

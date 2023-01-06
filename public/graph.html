@@ -20,27 +20,12 @@ Date*/
 
 let topcolor, bottomcolor;
 
-getData();
-async function getData() {
-  const response = await fetch('/api');
-  const data = await response.json();
-  console.log(data);
-
-  for (item of data){
-  globalThis.colors = `${item.color}`;
-  console.log(colors);
-  }
-}
-
 function setup() {
   //To resize canvas see https://p5js.org/reference/#/p5/resizeCanvas
 
   createCanvas(windowWidth, windowHeight);
   background(255,255,255);
-  maxDiameter = 800;
-  ringSpace = 100;
 
-  // Draw a square at location (30, 20) with a side size of 55 (??)
   //TODO: This will be set in editor.html manually
   //Bottom color = Total tickets. Physical Audience (data from Eventbrite) 61 orders / 90 tickets 
   topcolor = color(86, 193, 255);
@@ -54,6 +39,32 @@ function setup() {
     let newcolor = lerpColor(topcolor, bottomcolor, n);
     stroke(newcolor);
     line(0,y,width,y);
+  }
+  getData();
+  async function getData() {
+    const response = await fetch('/api');
+    const data = await response.json();
+    console.log(data);
+
+    for (item of data){
+      color = `${item.color}`;
+      radius = `${item.radius}`;
+
+      noFill();
+      if (color === '#FFFB00'){
+        stroke('#FFFB00');
+        strokeWeight(2);
+        circle(windowWidth/2, windowHeight/2, radius);
+      }
+
+      else if (color === '#522E6E'){
+        stroke('#522E6E');
+        strokeWeight(2);
+        circle(windowWidth/2, windowHeight/2, radius);
+      }
+      //Add drawings and ifs here
+    }
+  }
     
     //center point
     // fill("#bb1a1a");
@@ -123,24 +134,10 @@ function setup() {
     // stroke('#bb1a1a');
     // strokeWeight(2);
     // line(windowWidth/2-7, windowHeight/2-7, 185, 195);
-  }
+  
 }
 
-function draw() {
-  noFill();
-  if (colors === '#FFFB00'){
-    stroke('#FFFB00');
-    strokeWeight(2);
-    circle(windowWidth/2, windowHeight/2, 100);
-  }
-
-  else if (colors === '#522E6E'){
-    stroke('#522E6E');
-    strokeWeight(2);
-    circle(windowWidth/2, windowHeight/2, 800);
-  }
-  noLoop();
-}
+function draw() {}
     </script>
   </head>
   <body>

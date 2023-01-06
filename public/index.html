@@ -52,7 +52,7 @@
       console.log("success!");
       navigator.geolocation.getCurrentPosition(showLocation);
         } else {
-            alert("Sorry, browser does not support geolocation!");
+            alert("Sorry, this browser does not support geolocation!");
         }
 
     function onMapClick(e) {
@@ -67,30 +67,153 @@
       var c7 = arePointsNear(user, locs, r7);
       var c8 = arePointsNear(user, locs, r8);
       var c9 = arePointsNear(user, locs, r9);
-
-        // console.log(locs);
-        // console.log(n);
-        // console.log(user);
       L.marker(e.latlng)
       .addTo(map);
     
       if (n){
-        //true
+        //TODO: sending radii and coordinates here (remap coords to pixels in p5)
         L.marker(e.latlng)
         .addTo(map);
-        if (c1){console.log('inside 10 mile radius');}
-        else if (c2){console.log('inside 20 mile radius');}
-        else if (c3){console.log('inside 30 mile radius');}
-        else if (c4){console.log('inside 40 mile radius');}
-        else if (c5){console.log('inside 50 mile radius');}
-        else if (c6){console.log('inside 60 mile radius');}
-        else if (c7){console.log('inside 70 mile radius');}
-        else if (c8){console.log('inside 80 mile radius');}
-        else if (c9){console.log('inside 90 mile radius');}
+        if (c1){
+          console.log('inside 10 mile radius');
+          var radius = 80;
+          var color = "#88FA4E";
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
+        }
+        
+        else if (c2){
+          console.log('inside 20 mile radius');
+          var radius = 160;
+          var color = "#1DB100";
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
+        }
+        
+        else if (c3){
+          console.log('inside 30 mile radius');
+          var radius = 240;
+          var color = "#00FDFF";
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
+        }
+        
+        else if (c4){
+          console.log('inside 40 mile radius');
+          var radius = 320;
+          var color = "#0096FF";
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
+        }
+        
+        else if (c5){
+          console.log('inside 50 mile radius');
+          var radius = 400;
+          var color = "#9437FF";
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
+        }
+        
+        else if (c6){
+          console.log('inside 60 mile radius');
+          var radius = 480;
+          var color = "#942193";
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
+        }
+        
+        else if (c7){
+          console.log('inside 70 mile radius');
+          var radius = 560;
+          var color = "#FF40FF";
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
+        }
+        
+        else if (c8){
+          console.log('inside 80 mile radius');
+          var radius = 640;
+          var color = "#FF2F92";
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
+        }
+        
+        else if (c9){
+          console.log('inside 90 mile radius');
+          var radius = 720;
+          var color = "#FF9300";
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
+        }
+        
         else{
           console.log('inside 100 mile radius');
+          var radius = 800;
           var color = "#FFFB00";
-          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color};
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
           const options = {
             method: 'POST',
             headers:{
@@ -106,7 +229,6 @@
         L.marker(e.latlng)
         .addTo(map);
         console.log("outside 100 mile radius");
-        //TODO: Inidicate 100 here (or above). Re-use it in 10 mile radius.
         var color = "#522E6E";
         var data = {lat:e.latlng.lat, lon:e.latlng.lng, color};
         const options = {

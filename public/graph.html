@@ -46,21 +46,7 @@ function setup() {
     // stroke('#bb1a1a');
     // strokeWeight(2);
     // circle(windowWidth/2, windowHeight/2, 20)
-    
-    //LINES
-    //TODO: Lines could have an ellipse at their endpoints
-    //x1, y1 = 38, 31; x2, y2 = 300, 20;
-    // Use line() function to draw line
 
-    // stroke('#FFFB00');
-    // strokeWeight(2);
-    // line(windowWidth/2+10, windowHeight/2-7, 785, 195);
-    
-    // fill("#bb1a1a");
-    // stroke('#bb1a1a');
-    // strokeWeight(2);
-    // line(windowWidth/2-7, windowHeight/2-7, 185, 195);
-  
 }
 
 function draw() {
@@ -71,13 +57,19 @@ function draw() {
     
     for (item of data){
       let color = `${item.color}`;
-      let radius = `${item.radius}`
+      let radius = `${item.radius}`;
+      let lat = `${item.lat}`;
+      let lon = `${item.lon}`;
+      const pix = map.latLngToPixel(lat,lon);
       
-      if(radius){  
+      if(color){  
         noFill();
         stroke(color);
         strokeWeight(2);
         circle(windowWidth/2, windowHeight/2, radius);
+        
+        //TODO: Lines could have an ellipse at their endpoints
+        line(windowWidth/2+10, windowHeight/2-7, pix.x, pix,y);
       }
     }
   }

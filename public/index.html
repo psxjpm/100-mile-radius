@@ -8,7 +8,8 @@
   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/mappa-mundi/dist/mappa.min.js" type="text/javascript"></script>
+
     <style>
       html, body {
         height: 100%;
@@ -57,6 +58,8 @@
 
     function onMapClick(e) {
       var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
+      var pix = latLngToPixel(locs);
+
       var n = arePointsNear(user, locs, diameter);
       var c1 = arePointsNear(user, locs, r1);
       var c2 = arePointsNear(user, locs, r2);
@@ -76,8 +79,11 @@
         .addTo(map);
         if (c1){
           console.log('inside 10 mile radius');
+          console.log(pix);
           var radius = 80;
           var color = "#88FA4E";
+
+          //FIXME: Could it be locs instead of lat:e?
           var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
           const options = {
             method: 'POST',

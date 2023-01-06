@@ -40,31 +40,6 @@ function setup() {
     stroke(newcolor);
     line(0,y,width,y);
   }
-  getData();
-  async function getData() {
-    const response = await fetch('/api');
-    const data = await response.json();
-    console.log(data);
-
-    for (item of data){
-      color = `${item.color}`;
-      radius = `${item.radius}`;
-
-      noFill();
-      if (color === '#FFFB00'){
-        stroke('#FFFB00');
-        strokeWeight(2);
-        circle(windowWidth/2, windowHeight/2, radius);
-      }
-
-      else if (color === '#522E6E'){
-        stroke('#522E6E');
-        strokeWeight(2);
-        circle(windowWidth/2, windowHeight/2, radius);
-      }
-      //Add drawings and ifs here
-    }
-  }
     
     //center point
     // fill("#bb1a1a");
@@ -137,7 +112,47 @@ function setup() {
   
 }
 
-function draw() {}
+function draw() {
+  getData();
+  async function getData() {
+    const response = await fetch('/api');
+    const data = await response.json();
+    
+    for (item of data){
+      let color = `${item.color}`;
+      let radius = `${item.radius}`
+      
+      if(radius){  
+        noFill();
+        stroke(color);
+        strokeWeight(2);
+        circle(windowWidth/2, windowHeight/2, radius);
+      }
+    //   color = `${item.color}`;
+    //   radius = `${item.radius}`;
+
+    }
+    // for (item of data){
+    //   color = `${item.color}`;
+    //   radius = `${item.radius}`;
+
+    //   //Add drawings and ifs here
+    //   noFill();
+    //   if (color === '#FFFB00'){
+    //     stroke('#FFFB00');
+    //     strokeWeight(2);
+    //     circle(windowWidth/2, windowHeight/2, radius);
+    //   }
+
+    //   if (color === '#522E6E'){
+    //     stroke('#522E6E');
+    //     strokeWeight(2);
+    //     circle(windowWidth/2, windowHeight/2, radius);
+    //   }
+    // }
+  }
+  // noLoop();
+}
     </script>
   </head>
   <body>

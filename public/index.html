@@ -87,7 +87,19 @@
         else if (c7){console.log('inside 70 mile radius');}
         else if (c8){console.log('inside 80 mile radius');}
         else if (c9){console.log('inside 90 mile radius');}
-        else{console.log('inside 100 mile radius')}
+        else{
+          console.log('inside 100 mile radius');
+          var color = "#FFFB00";
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+          body: JSON.stringify(data)
+         };
+        const response = fetch('/api',options);
+        }
       }
       
       else{
@@ -95,8 +107,8 @@
         .addTo(map);
         console.log("outside 100 mile radius");
         //TODO: Inidicate 100 here (or above). Re-use it in 10 mile radius.
-        const color = "#522E6E";
-        const data = {lat:e.latlng.lat, lon:e.latlng.lng, color};
+        var color = "#522E6E";
+        var data = {lat:e.latlng.lat, lon:e.latlng.lng, color};
         const options = {
           method: 'POST',
           headers:{
@@ -105,8 +117,6 @@
           body: JSON.stringify(data)
         };
         const response = fetch('/api',options);
-        // const json = response.json();
-        // console.log(json);
       }
     }
     map.on('click', onMapClick);

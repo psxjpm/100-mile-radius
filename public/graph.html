@@ -38,6 +38,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255,255,255);
   maxDiameter = 800;
+  ringSpace = 100;
 
   // Draw a square at location (30, 20) with a side size of 55 (??)
   //TODO: This will be set in editor.html manually
@@ -105,16 +106,9 @@ function setup() {
     // stroke('#FF9300');
     // strokeWeight(2);
     // circle(windowWidth/2, windowHeight/2, 420)
-    
-    // noFill();
-    // stroke('#FFFB00');
-    // strokeWeight(2);
-    // circle(windowWidth/2, windowHeight/2, 460)
-    
-    // noFill();
-    // stroke('#522E6E');
-    // strokeWeight(2);
-    // circle(windowWidth/2, windowHeight/2, 500)
+
+
+  
     
     //LINES
     //TODO: Lines should have an ellipse at their endpoints
@@ -134,10 +128,16 @@ function setup() {
 
 function draw() {
   noFill();
-  if (colors === '#522E6E'){
+  if (colors === '#FFFB00'){
+    stroke('#FFFB00');
+    strokeWeight(2);
+    circle(windowWidth/2, windowHeight/2, 100);
+  }
+
+  else if (colors === '#522E6E'){
     stroke('#522E6E');
     strokeWeight(2);
-    circle(windowWidth/2, windowHeight/2, maxDiameter)
+    circle(windowWidth/2, windowHeight/2, 800);
   }
   noLoop();
 }

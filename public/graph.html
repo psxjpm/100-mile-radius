@@ -41,6 +41,7 @@ function setup() {
     line(0,y,width,y);
   }
     
+  //TODO: center point follows the rules of 100 mile radius
     //center point
     // fill("#bb1a1a");
     // stroke('#bb1a1a');
@@ -60,7 +61,8 @@ function draw() {
       let radius = `${item.radius}`;
       let lat = `${item.lat}`;
       let lon = `${item.lon}`;
-      const pix = map.latLngToPixel(lat,lon);
+      let pixelX = `${item.x}`;
+      let pixelY = `${item.y}`;
       
       if(color){  
         noFill();
@@ -69,7 +71,7 @@ function draw() {
         circle(windowWidth/2, windowHeight/2, radius);
         
         //TODO: Lines could have an ellipse at their endpoints
-        line(windowWidth/2+10, windowHeight/2-7, pix.x, pix,y);
+        line(windowWidth/2+10, windowHeight/2-7, pixelX, pixelY);
       }
     }
   }

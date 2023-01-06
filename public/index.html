@@ -73,7 +73,6 @@
       .addTo(map);
     
       if (n){
-        //TODO: sending radii and coordinates here (remap coords to pixels in p5)
         L.marker(e.latlng)
         .addTo(map);
         if (c1){
@@ -81,7 +80,8 @@
           var radius = 80;
           var color = "#88FA4E";
 
-          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
+          //TODO: Add pix attribute
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, x:e.layerPoint.x, y:e.layerPoint.y};
           const options = {
             method: 'POST',
             headers:{

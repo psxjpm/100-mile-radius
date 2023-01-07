@@ -1,15 +1,48 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <style>
+      /* style.css */
+
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+
+        /* This centers our sketch horizontally. */
+        justify-content: center;
+
+        /* This centers our sketch vertically. */
+        align-items: center;
+      }
+    </style>
     <script>
 
 let topcolor, bottomcolor;
+let canvasWidth, canvasHeight;
+let sqrCnv;
 
 function setup() {
-  //To resize canvas see https://p5js.org/reference/#/p5/resizeCanvas
+  canvasWidth = 1600;
+  canvasHeight = 1000;
+  createCanvas(canvasWidth, canvasHeight);
+  rectMode(CENTER); 
+  noStroke();
 
-  createCanvas(windowWidth, windowHeight);
+  //TODO: center point follows the rules of 100 mile radius
+    //center point
+    // fill("#bb1a1a");
+    // stroke('#bb1a1a');
+    // strokeWeight(2);
+    // circle(windowWidth/2, windowHeight/2, 20)
+}
+
+function draw() {
   background(255,255,255);
+  sqrCnv = 800;
 
   //TODO: This will be set in editor.html manually
   //Bottom color = Total tickets. Physical Audience (data from Eventbrite) 61 orders / 90 tickets 
@@ -24,17 +57,11 @@ function setup() {
     let newcolor = lerpColor(topcolor, bottomcolor, n);
     stroke(newcolor);
     line(0,y,width,y);
-  }
-    
-  //TODO: center point follows the rules of 100 mile radius
-    //center point
-    // fill("#bb1a1a");
-    // stroke('#bb1a1a');
-    // strokeWeight(2);
-    // circle(windowWidth/2, windowHeight/2, 20)
-}
 
-function draw() {
+
+  rect(width/2, height/2, sqrCnv, sqrCnv)
+  }
+  
   getData();
   async function getData() {
     const response = await fetch('/api');
@@ -51,13 +78,13 @@ function draw() {
       if(color){  
         noFill();
         stroke(color);
-        strokeWeight(2);
-        circle(windowWidth/2, windowHeight/2, radius);
-        line(windowWidth/2+10, windowHeight/2-7, pixelX, pixelY);
+        strokeWeight(3);
+        circle(sqrCnv/2, sqrCnv/2, radius);
+        line(sqrCnv/2+10, sqrCnv/2-7, pixelX, pixelY);
       }
     }
   }
-  // noLoop();
+  noLoop();
 }
     </script>
   </head>

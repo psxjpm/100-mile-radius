@@ -3,21 +3,6 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
     <script>
 
-//TODO: 
-/*Gradient percentages
-Line endpoints (ellipse and pointy fading endpoint)
-Concentric circles opacity*/
-
-//Desired: 
-/*Line textures
-Make arcs not circles*/
-
-//Post production:
-/*Frame border 
-Text
-Date*/
-
-
 let topcolor, bottomcolor;
 
 function setup() {
@@ -47,7 +32,6 @@ function setup() {
     // stroke('#bb1a1a');
     // strokeWeight(2);
     // circle(windowWidth/2, windowHeight/2, 20)
-
 }
 
 function draw() {
@@ -69,8 +53,6 @@ function draw() {
         stroke(color);
         strokeWeight(2);
         circle(windowWidth/2, windowHeight/2, radius);
-        
-        //TODO: Lines could have an ellipse at their endpoints
         line(windowWidth/2+10, windowHeight/2-7, pixelX, pixelY);
       }
     }
@@ -84,3 +66,18 @@ function draw() {
     </main>
   </body>
 </html>
+
+<!-- //TODO: 
+/*Gradient percentages
+Line endpoints (ellipse and pointy fading endpoint)
+Concentric circles opacity*/
+
+//Desired: 
+/*Line textures
+Make arcs not circles*/
+https://p5js.org/reference/#/p5/arc
+
+//Post production:
+/*Frame border 
+Text
+Date*/ -->

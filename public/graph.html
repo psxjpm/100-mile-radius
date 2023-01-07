@@ -29,8 +29,12 @@ function setup() {
   canvasWidth = 1600;
   canvasHeight = 1000;
   createCanvas(canvasWidth, canvasHeight);
-  rectMode(CENTER); 
+  rectMode(CENTER);
   noStroke();
+  sqrCnv = 800;
+  
+  // rectMode(CENTER); 
+  // noStroke();
 
   //TODO: center point follows the rules of 100 mile radius
     //center point
@@ -41,26 +45,18 @@ function setup() {
 }
 
 function draw() {
-  background(255,255,255);
-  sqrCnv = 800;
+  background(255);
 
   //TODO: This will be set in editor.html manually
-  //Bottom color = Total tickets. Physical Audience (data from Eventbrite) 61 orders / 90 tickets 
-  topcolor = color(86, 193, 255);
-  bottomcolor = color(148, 23, 81);
+  // The start gradient point is at x=0, y=0
+  // The end gradient point is at x=0, y=0
+  let gradient = drawingContext.createLinearGradient(0, 500, 0, 260);
+  
+  gradient.addColorStop(0,color(148, 23, 81));
+  gradient.addColorStop(1,color(86, 193, 255));
 
-  for (let y=0; y<height; y++){
-    
-    //n defines lerp (remap from ticket numbers and map inputs [])
-    n = map(y,0,height, 0,1); 
-    
-    let newcolor = lerpColor(topcolor, bottomcolor, n);
-    stroke(newcolor);
-    line(0,y,width,y);
-
-
-  rect(width/2, height/2, sqrCnv, sqrCnv)
-  }
+  drawingContext.fillStyle = gradient;
+  rect(width/2, height/2, 800, 800);
   
   getData();
   async function getData() {
@@ -84,6 +80,7 @@ function draw() {
       }
     }
   }
+
   noLoop();
 }
     </script>

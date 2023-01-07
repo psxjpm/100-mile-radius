@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="leaflet.geometryutil.js"></script>
   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+
 
     <style>
       html, body {
@@ -57,8 +59,13 @@
 
     function onMapClick(e) {
       //FIXME: need an origin point of reference weird bug going on with lines
-      var pix = map.latLngToContainerPoint(e.latlng);
-      console.log(pix);
+      // var pix = map.latLngToLayerPoint(e.latlng);
+      // origin = globalThis.user;
+      // console.log(typeof globalThis.user);
+      
+      var ang = angle(map, user, locs);
+      console.log(ang);
+
       var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
       var n = arePointsNear(user, locs, diameter);
       var c1 = arePointsNear(user, locs, r1);
@@ -80,7 +87,7 @@
           console.log('inside 10 mile radius');
           var radius = 80;
           var color = "#88FA4E";
-          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, x:pix.x, y:pix.y};
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, x:e.layerPoint.x, y:e.layerPoint.y};
           const options = {
             method: 'POST',
             headers:{

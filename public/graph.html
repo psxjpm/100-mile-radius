@@ -1,7 +1,7 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
-    <style>
+    <!-- <style>
       /* style.css */
 
       html, body {
@@ -18,7 +18,7 @@
         /* This centers our sketch vertically. */
         align-items: center;
       }
-    </style>
+    </style> -->
     <script>
 
 let topcolor, bottomcolor;
@@ -27,11 +27,10 @@ let sqrCnv;
 
 function setup() {
   canvasWidth = 1600;
-  canvasHeight = 1000;
+  canvasHeight = 1200;
   createCanvas(canvasWidth, canvasHeight);
   rectMode(CENTER);
   noStroke();
-  sqrCnv = 800;
   
   // rectMode(CENTER); 
   // noStroke();
@@ -56,7 +55,7 @@ function draw() {
   gradient.addColorStop(1,color(86, 193, 255));
 
   drawingContext.fillStyle = gradient;
-  rect(width/2, height/2, 800, 800);
+  rect(width/2, height/2, 900, 900);
   
   getData();
   async function getData() {
@@ -75,12 +74,11 @@ function draw() {
         noFill();
         stroke(color);
         strokeWeight(3);
-        circle(sqrCnv/2, sqrCnv/2, radius);
-        line(sqrCnv/2+10, sqrCnv/2-7, pixelX, pixelY);
+        circle(width/2, height/2, radius);
+        line(width/2+10, height/2-7, pixelX, pixelY);
       }
     }
   }
-
   noLoop();
 }
     </script>

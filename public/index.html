@@ -233,7 +233,7 @@
         L.marker(e.latlng)
         .addTo(map);
         console.log("outside 100 mile radius");
-        var radius = null;
+        var radius = 1000;
         var color = "#522E6E";
         var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, ang};
         const options = {

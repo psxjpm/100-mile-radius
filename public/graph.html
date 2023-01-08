@@ -11,7 +11,7 @@ function setup() {
   canvasHeight = 1200;
   createCanvas(canvasWidth, canvasHeight);
   rectMode(CENTER);
-  // noStroke();
+  noStroke();
 
   //TODO: center point follows the rules of 100 mile radius
     //center point
@@ -27,14 +27,13 @@ function draw() {
   // The end gradient point is at x=0, y=0
   background(255);
  
-  // let gradient = drawingContext.createLinearGradient(0, 500, 0, 260);
+  let gradient = drawingContext.createLinearGradient(0, 500, 0, 260);
   
-  // gradient.addColorStop(0,color(148, 23, 81));
-  // gradient.addColorStop(1,color(86, 193, 255));
+  gradient.addColorStop(0,color(148, 23, 81));
+  gradient.addColorStop(1,color(86, 193, 255));
 
-  // drawingContext.fillStyle = gradient;
+  drawingContext.fillStyle = gradient;
   rect(width/2, height/2, 900, 900);
-  text("(" + mouseX + ", " + mouseY + ")", mouseX, mouseY);
 
   getData();
   async function getData() {
@@ -46,15 +45,25 @@ function draw() {
       let radius = `${item.radius}`;
       let lat = `${item.lat}`;
       let lon = `${item.lon}`;
-      let pixelX = `${item.x}`;
-      let pixelY = `${item.y}`;
-      
+      let angle = radians(`${item.ang}`);
+
+      let v = createVector();
+      //radius is actually a diameter in p5
+      v.set(radius/2, 0);
+      v.rotate(angle);
+
+      let x1 = width/2;
+      let y1 = height/2;
+
+      let x2 = x1 + v.x;
+      let y2 = y1 + v.y;
+
       if(color){  
         noFill();
         stroke(color);
         strokeWeight(3);
-        circle(width/2, height/2, radius);
-        line(width/2+10, height/2-7, pixelX, pixelY);
+        circle(x1, y1, radius);
+        line(x1, y1, x2, y2);
       }
     }
   }

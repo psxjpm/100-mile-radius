@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 
-
     <style>
       html, body {
         height: 100%;
@@ -18,12 +17,10 @@
         margin: 0;
       }
       #map {
-        /* configure the size of the map */
         width: 100%;
         height: 100%;
       }
     </style>
-
   </head>
 
   <body>
@@ -60,13 +57,11 @@
     function onMapClick(e) {
       //FIXME: need an origin point of reference weird bug going on with lines
       // var pix = map.latLngToLayerPoint(e.latlng);
-      // origin = globalThis.user;
-      // console.log(typeof globalThis.user);
       
       var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
       var ang = L.GeometryUtil.angle(map, user, locs);
       console.log(ang);
-      
+   
       var n = arePointsNear(user, locs, diameter);
       var c1 = arePointsNear(user, locs, r1);
       var c2 = arePointsNear(user, locs, r2);
@@ -87,7 +82,7 @@
           console.log('inside 10 mile radius');
           var radius = 80;
           var color = "#88FA4E";
-          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, x:e.layerPoint.x, y:e.layerPoint.y};
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius};
           const options = {
             method: 'POST',
             headers:{

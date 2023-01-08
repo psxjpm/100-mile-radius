@@ -1,38 +1,16 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
-    <!-- <style>
-      /* style.css */
-
-      html, body {
-        height: 100%;
-      }
-
-      body {
-        margin: 0;
-        display: flex;
-
-        /* This centers our sketch horizontally. */
-        justify-content: center;
-
-        /* This centers our sketch vertically. */
-        align-items: center;
-      }
-    </style> -->
     <script>
 
 let topcolor, bottomcolor;
 let canvasWidth, canvasHeight;
-let sqrCnv;
 
 function setup() {
   canvasWidth = 1600;
   canvasHeight = 1200;
   createCanvas(canvasWidth, canvasHeight);
   rectMode(CENTER);
-  noStroke();
-  
-  // rectMode(CENTER); 
   // noStroke();
 
   //TODO: center point follows the rules of 100 mile radius
@@ -44,19 +22,20 @@ function setup() {
 }
 
 function draw() {
-  background(255);
-
   //TODO: This will be set in editor.html manually
   // The start gradient point is at x=0, y=0
   // The end gradient point is at x=0, y=0
-  let gradient = drawingContext.createLinearGradient(0, 500, 0, 260);
+  background(255);
+ 
+  // let gradient = drawingContext.createLinearGradient(0, 500, 0, 260);
   
-  gradient.addColorStop(0,color(148, 23, 81));
-  gradient.addColorStop(1,color(86, 193, 255));
+  // gradient.addColorStop(0,color(148, 23, 81));
+  // gradient.addColorStop(1,color(86, 193, 255));
 
-  drawingContext.fillStyle = gradient;
+  // drawingContext.fillStyle = gradient;
   rect(width/2, height/2, 900, 900);
-  
+  text("(" + mouseX + ", " + mouseY + ")", mouseX, mouseY);
+
   getData();
   async function getData() {
     const response = await fetch('/api');
@@ -90,16 +69,9 @@ function draw() {
 </html>
 
 <!-- //TODO: 
-/*Gradient percentages
-Line endpoints (ellipse and pointy fading endpoint)
-Concentric circles opacity*/
+//Gradient percentages
+//Line endpoints (ellipse and pointy fading endpoint)
+//Concentric circles opacity
 
 //Desired: 
-/*Line textures
-Make arcs not circles*/
-https://p5js.org/reference/#/p5/arc
-
-//Post production:
-/*Frame border 
-Text
-Date*/ -->
+//Make arcs not circles: https://p5js.org/reference/#/p5/arc

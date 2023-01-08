@@ -50,7 +50,7 @@ function draw() {
       let v = createVector();
       //radius is actually a diameter in p5
       v.set(radius/2, 0);
-      v.rotate(angle);
+      v.rotate(angle*PI);
 
       let x1 = width/2;
       let y1 = height/2;
@@ -58,11 +58,17 @@ function draw() {
       let x2 = x1 + v.x;
       let y2 = y1 + v.y;
 
-      if(color){  
+      if(radius < 1000){  
         noFill();
         stroke(color);
         strokeWeight(3);
         circle(x1, y1, radius);
+        line(x1, y1, x2, y2);
+      }
+      else{
+        noFill();
+        stroke(color);
+        strokeWeight(3);
         line(x1, y1, x2, y2);
       }
     }

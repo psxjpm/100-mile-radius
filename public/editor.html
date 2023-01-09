@@ -9,17 +9,11 @@
     <body>
         <img src="" id="editor"/>
         <h1>100 Mile Radius Editor</h1>
-        <p>latitude: <span id="latitude"></span><br/></p>
-        <p>longitude: <span id="longitude"></span><br/></p>
-        <button id="geolocate">Set 100 mile radius</button><br/>
 
-        <br/>
-        <form id="form" action="" onsubmit="data(event)">
-            <label for="tickets"> Number of tickets sold:</label><br/>
-            <input id="tickets"  name="tickets" type="text" required/>
-            <button type="submit">Submit</button>
+        <form>
+            <input type="number" id="tix"/>
+            <input type="submit" value="click" onclick="sendTix();"/>
         </form>
-       
    
         <br/>
         <div>

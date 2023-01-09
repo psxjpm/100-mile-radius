@@ -54,14 +54,9 @@
           alert("Sorry, this browser does not support geolocation!");
         }
 
-    function onMapClick(e) {
-      //FIXME: need an origin point of reference weird bug going on with lines
-      // var pix = map.latLngToLayerPoint(e.latlng);
-      
+    function onMapClick(e) {      
       var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
-      var ang = L.GeometryUtil.angle(map, user, locs);
-      console.log(ang);
-   
+      var ang = L.GeometryUtil.angle(map, user, locs);  
       var n = arePointsNear(user, locs, diameter);
       var c1 = arePointsNear(user, locs, r1);
       var c2 = arePointsNear(user, locs, r2);
@@ -253,7 +248,7 @@
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
       }).addTo(map);
       
-      //TODO: delete this after demo and debugs
+      //for demos and debugs
       var circle = L.circle([52.94951704158299, -1.1707091331481936],{
         color: 'red',
         fillColor: '#f03',
@@ -261,7 +256,6 @@
         radius: 160934 //100 miles in meters
       }).addTo(map);
       
-      // show the scale bar on the lower left corner
       L.control.scale({imperial: true, metric: true}).addTo(map);
 
       function arePointsNear(checkPoint, centerPoint, m) { // credits to user:69083

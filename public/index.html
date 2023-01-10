@@ -58,9 +58,11 @@
 
    function plusOne() {
     participant++;
-    console.log(participant);
-    // localStorage.setItem("pNum", participant);
-}
+    const pNum = participant.value;
+    localStorage.setItem("participant-number", pNum);
+    window.location.href = "graph.html";
+
+  }
     function onMapClick(e) {      
       var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
       var ang = L.GeometryUtil.angle(map, user, locs);  

@@ -1,3 +1,9 @@
+<!-- //TODO: 
+<!-- //Gradient percentages
+//Concentric circles opacity
+
+//Desired: 
+//Make arcs not circles: https://p5js.org/reference/#/p5/arc -->
 <html>
   <head>
     <title> Graph </title>
@@ -21,6 +27,7 @@ function setup() {
   noStroke();
 }
 
+//FIXME: Layers need to be drawn in this order rings, lines, centre point
 function draw() {
   // The start gradient point is at x1=0, y1=0 (Makes blue change - the smaller the y the more it graws)
   // The end gradient point is at x2=0, y2=0
@@ -70,21 +77,14 @@ function draw() {
         circle(x1, y1, radius);
         line(x1, y1, x2, y2);
       }
+        //TODO: center point follows the rules of 100 mile radius
       else if(color=="null"){
         fill(tnbc.bc);
         stroke(tnbc.bc);
         strokeWeight(3);
         circle(x1, y1, 20);
         line(x1, y1, x2, y2);
-      }
-  //TODO: center point follows the rules of 100 mile radius
-  //TODO: Set color with html
-    //center point
-    // fill("#bb1a1a");
-    // stroke('#bb1a1a');
-    // strokeWeight(2);
-    // circle(windowWidth/2, windowHeight/2, 20)
-    
+      }    
       else{
         noFill();
         stroke(color);
@@ -103,9 +103,3 @@ function draw() {
   </body>
 </html>
 
-<!-- //TODO: 
-//Gradient percentages
-//Concentric circles opacity
-
-//Desired: 
-//Make arcs not circles: https://p5js.org/reference/#/p5/arc

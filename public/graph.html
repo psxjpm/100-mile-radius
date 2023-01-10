@@ -1,23 +1,15 @@
 <html>
   <head>
+    <title> Graph </title>
+
     <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
     <script>
 
 let topcolor, bottomcolor;
 let canvasWidth, canvasHeight;
 
-
-            const myObjectString2 = localStorage.getItem('objectGreeting');
-            const myObject2 = JSON.parse(myObjectString2);
-            console.log(myObject2);  
-
-// if (typeof localStorage === "undefined" || localStorage === null) {
-//    var LocalStorage = require('node-localstorage').LocalStorage;
-//    localStorage = new LocalStorage('./scratch');
-//    var tn = localStorage.getItem("tixNum");
-//    var bc = localStorage.getItem("brandColor");
-//    var pn = locatStorage.getItem("pNum");
-// }
+const tnbc = JSON.parse(localStorage.getItem('Obj'));
+console.log(tnbc);
 
 function setup() {
   canvasWidth = 1600;

@@ -10,8 +10,7 @@
         <img src="" id="editor"/>
         <h1>100 Mile Radius Editor</h1>
 
-        <!-- TODO: update this URL after deployment -->
-        <form action="https://psxjpm.github.io/100-mile-radius/public/graph.html">
+        <!-- <form action="/graph.html">
             <input type="number" id="tix" required/>
             <input type="submit" value="Submit ticket numbers" onclick="sendTix();"/>
         </form>
@@ -19,12 +18,12 @@
         <script>
             function sendTix(){
                 var tix = document.getElementById("tix").value;
-                localStorage.setItem("tixNum", tix);
+                sessionStorage.setItem("tixNum", tix);
             }
         </script>
    
         <br/>
-        <form action="https://psxjpm.github.io/100-mile-radius/public/graph.html">
+        <form action="/graph.html">
             <input type="color" id="brandColor" value="#e66465" required/>
             <input type="submit" value="Submit colour" onclick="sendColor();"/>
         </form>
@@ -32,7 +31,7 @@
             function sendColor(){
                 var color = document.getElementById("brandColor").value;
                 localStorage.setItem("Color", brandColor);
-            }
+            } -->
         </script>
     </body>
 </html>

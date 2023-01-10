@@ -6,6 +6,15 @@
 let topcolor, bottomcolor;
 let canvasWidth, canvasHeight;
 
+
+// if (typeof localStorage === "undefined" || localStorage === null) {
+//    var LocalStorage = require('node-localstorage').LocalStorage;
+//    localStorage = new LocalStorage('./scratch');
+//    var tn = localStorage.getItem("tixNum");
+//    var bc = localStorage.getItem("brandColor");
+//    var pn = locatStorage.getItem("pNum");
+// }
+
 function setup() {
   canvasWidth = 1600;
   canvasHeight = 1200;
@@ -24,14 +33,18 @@ function setup() {
 
 function draw() {
   //TODO: Ticket  sales will be set will be set in editor.html manually (bottom color)
-  // The start gradient point is at x=0, y=0
-  // The end gradient point is at x=0, y=0
+  // The start gradient point is at x1=0, y1=0 (Makes blue change - the smaller the y the more it graws)
+  // The end gradient point is at x2=0, y2=0
   background(255);
+  per = (pn*100)/tn;
+  gPer = (per*300)/100;
+
  
-  let gradient = drawingContext.createLinearGradient(0, 500, 0, 260);
-  
-  gradient.addColorStop(0,color(148, 23, 81));
-  gradient.addColorStop(1,color(86, 193, 255));
+  let gradient = drawingContext.createLinearGradient(width/2, height/4, width/2, height*0.75);
+  // let gradient = drawingContext.createLinearGradient(width/2, gPer, width/2, height*0.75);
+
+  gradient.addColorStop(1,color(148, 23, 81));
+  gradient.addColorStop(0,color(86, 193, 255));
 
   drawingContext.fillStyle = gradient;
   rect(width/2, height/2, 900, 900);

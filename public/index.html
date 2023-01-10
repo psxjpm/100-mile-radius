@@ -38,6 +38,7 @@
     const r7 = diameter - mileseg * 3;
     const r8 = diameter - mileseg * 2;
     const r9 = diameter - mileseg;
+    var participant = 0;
   
     L.control.locate().addTo(map);
     
@@ -54,6 +55,11 @@
           alert("Sorry, this browser does not support geolocation!");
         }
 
+   function plusOne() {
+    participant++;
+    console.log(participant);
+    // localStorage.setItem("pNum", participant);
+}
     function onMapClick(e) {      
       var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
       var ang = L.GeometryUtil.angle(map, user, locs);  
@@ -67,6 +73,9 @@
       var c7 = arePointsNear(user, locs, r7);
       var c8 = arePointsNear(user, locs, r8);
       var c9 = arePointsNear(user, locs, r9);
+  
+      plusOne();
+
       L.marker(e.latlng)
       .addTo(map);
     

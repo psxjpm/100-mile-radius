@@ -57,11 +57,11 @@
         }
 
    function plusOne() {
-    participant++;
-    const pNum = participant.value;
+    
+    const pNum = participant++;
+    console.log(pNum);
     localStorage.setItem("participant-number", pNum);
-    window.location.href = "graph.html";
-
+    // window.location.href = "graph.html";
   }
     function onMapClick(e) {      
       var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
@@ -78,7 +78,7 @@
       var c9 = arePointsNear(user, locs, r9);
   
       plusOne();
-
+      // e.preventDefault();
       L.marker(e.latlng)
       .addTo(map);
     

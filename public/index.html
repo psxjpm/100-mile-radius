@@ -33,7 +33,7 @@
     //r1 = 10 mile radius
     const r1 = diameter - mileseg * 9;
     //r11 = eleven mile radius
-    const r11 = 143232; 
+    const r11 = mileseg + 1609.34; 
     const r2 = diameter - mileseg * 8;
     const r3 = diameter - mileseg * 7;
     const r4 = diameter - mileseg * 6;
@@ -90,7 +90,7 @@
         L.marker(e.latlng)
         .addTo(map);
         //FIXME: 10 miles always triggers
-        if (c11){
+        if (c1){
           console.log('inside 10 mile radius');
           var radius = 80;
           var color = "#88FA4E";
@@ -105,7 +105,7 @@
           const response = fetch('/api',options);
         }
 
-        if (c1){
+        else if (c11){
           console.log('inside 11 mile radius');
            var radius = null;
           var color = null;

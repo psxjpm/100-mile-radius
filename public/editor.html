@@ -16,12 +16,14 @@
         </form>
 
         <script>
-            function submitForm() {
-              const value = 123;
-              document.getElementById('value').value = value;
-              document.getElementById('myForm').submit();
+            function submitForm(){
+                const myObject = { hello: 'world' };
+                const myObjectString = JSON.stringify(myObject);
+                localStorage.setItem('objectGreeting', myObjectString);
             }
-        </script>
+
+          </script>
+          
 
         <!-- <form action="/graph.html">
             <input type="number" id="tix" required/>

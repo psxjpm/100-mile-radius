@@ -6,8 +6,10 @@
 let topcolor, bottomcolor;
 let canvasWidth, canvasHeight;
 
-const value = document.querySelector('input[name="value"]').value;
-console.log(value); // 123
+
+            const myObjectString2 = localStorage.getItem('objectGreeting');
+            const myObject2 = JSON.parse(myObjectString2);
+            console.log(myObject2);  
 
 // if (typeof localStorage === "undefined" || localStorage === null) {
 //    var LocalStorage = require('node-localstorage').LocalStorage;

@@ -19,14 +19,6 @@ function setup() {
   createCanvas(canvasWidth, canvasHeight);
   rectMode(CENTER);
   noStroke();
-
-  //TODO: center point follows the rules of 100 mile radius
-  //TODO: Set color with html
-    //center point
-    // fill("#bb1a1a");
-    // stroke('#bb1a1a');
-    // strokeWeight(2);
-    // circle(windowWidth/2, windowHeight/2, 20)
 }
 
 function draw() {
@@ -78,6 +70,21 @@ function draw() {
         circle(x1, y1, radius);
         line(x1, y1, x2, y2);
       }
+      else if(color=="null"){
+        fill(tnbc.bc);
+        stroke(tnbc.bc);
+        strokeWeight(3);
+        circle(x1, y1, 20);
+        line(x1, y1, x2, y2);
+      }
+  //TODO: center point follows the rules of 100 mile radius
+  //TODO: Set color with html
+    //center point
+    // fill("#bb1a1a");
+    // stroke('#bb1a1a');
+    // strokeWeight(2);
+    // circle(windowWidth/2, windowHeight/2, 20)
+    
       else{
         noFill();
         stroke(color);

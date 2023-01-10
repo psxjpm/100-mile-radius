@@ -89,7 +89,6 @@
       if (n){
         L.marker(e.latlng)
         .addTo(map);
-        //FIXME: 10 miles always triggers
         if (c1){
           console.log('inside 10 mile radius');
           var radius = 80;
@@ -107,7 +106,7 @@
 
         else if (c11){
           console.log('inside 11 mile radius');
-           var radius = null;
+          var radius = 20;
           var color = null;
           var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, ang};
           const options = {

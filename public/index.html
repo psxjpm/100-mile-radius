@@ -31,9 +31,9 @@
     const diameter = 160934;
     const mileseg = 16093.4;
     //r1 = 10 mile radius
-    const r1 = diameter - mileseg * 9;
+    const r10 = diameter - mileseg * 9;
     //r11 = eleven mile radius
-    const r11 = mileseg + 1609.34; 
+    const r1 = mileseg/2; 
     const r2 = diameter - mileseg * 8;
     const r3 = diameter - mileseg * 7;
     const r4 = diameter - mileseg * 6;
@@ -71,7 +71,7 @@
       var ang = L.GeometryUtil.angle(map, user, locs);  
       var n = arePointsNear(user, locs, diameter);
       var c1 = arePointsNear(user, locs, r1);
-      var c11 = arePointsNear(user, locs, r11);
+      var c10 = arePointsNear(user, locs, r10);
       var c2 = arePointsNear(user, locs, r2);
       var c3 = arePointsNear(user, locs, r3);
       var c4 = arePointsNear(user, locs, r4);
@@ -90,7 +90,7 @@
         L.marker(e.latlng)
         .addTo(map);
         if (c1){
-          console.log('inside 10 mile radius');
+          console.log('inside 5 mile radius');
           var radius = 80;
           var color = "#88FA4E";
           var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, ang};
@@ -104,8 +104,8 @@
           const response = fetch('/api',options);
         }
 
-        else if (c11){
-          console.log('inside 11 mile radius');
+        else if (c10){
+          console.log('inside 10 mile radius');
           var radius = 20;
           var color = null;
           var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, ang};
@@ -280,12 +280,12 @@
       }).addTo(map);
       
       //for demos and debugs
-      var circle = L.circle([52.94951704158299, -1.1707091331481936],{
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.1,
-        radius: 160934 //100 miles in meters
-      }).addTo(map);
+      // var circle = L.circle([52.94951704158299, -1.1707091331481936],{
+      //   color: 'red',
+      //   fillColor: '#f03',
+      //   fillOpacity: 0.1,
+      //   radius: 160934 //100 miles in meters
+      // }).addTo(map);
       
       L.control.scale({imperial: true, metric: true}).addTo(map);
 

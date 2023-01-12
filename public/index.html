@@ -42,7 +42,7 @@
     const r7 = diameter - mileseg * 3;
     const r8 = diameter - mileseg * 2;
     const r9 = diameter - mileseg;
-    var participant = 0;
+    var participant = 1;
   
     L.control.locate().addTo(map);
     
@@ -106,7 +106,7 @@
 
         else if (c10){
           console.log('inside 10 mile radius');
-          var radius = 20;
+          var radius = null;
           var color = null;
           var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, ang};
           const options = {

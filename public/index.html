@@ -32,10 +32,7 @@
     //Radii definitions
     const diameter = 160934;
     const mileseg = 16093.4;
-    //r1 = 10 mile radius
-    const r10 = diameter - mileseg * 9;
-    //r11 = eleven mile radius
-    const r1 = mileseg/2; 
+    const r1 = diameter - mileseg * 9;
     const r2 = diameter - mileseg * 8;
     const r3 = diameter - mileseg * 7;
     const r4 = diameter - mileseg * 6;
@@ -66,7 +63,6 @@
       const pNum = participant++;
       console.log(pNum);
       localStorage.setItem("participant-number", pNum);
-      // window.location.href = "graph.html";
     }
   
     function onMapClick(e) {      
@@ -74,7 +70,6 @@
       var ang = L.GeometryUtil.angle(map, user, locs);  
       var n = arePointsNear(user, locs, diameter);
       var c1 = arePointsNear(user, locs, r1);
-      var c10 = arePointsNear(user, locs, r10);
       var c2 = arePointsNear(user, locs, r2);
       var c3 = arePointsNear(user, locs, r3);
       var c4 = arePointsNear(user, locs, r4);
@@ -93,24 +88,9 @@
         L.marker(e.latlng)
         .addTo(map);
         if (c1){
-          console.log('inside 5 mile radius');
+          console.log('inside 10 mile radius');
           var radius = 80;
           var color = "#88FA4E";
-          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, ang};
-          const options = {
-            method: 'POST',
-            headers:{
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-          };
-          const response = fetch('/api',options);
-        }
-
-        else if (c10){
-          console.log('inside 10 mile radius');
-          var radius = null;
-          var color = null;
           var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, ang};
           const options = {
             method: 'POST',

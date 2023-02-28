@@ -28,6 +28,8 @@
     <div id="map"></div>
     <script>
     const map = L.map('map').locate({setView: true, maxZoom: 20});
+
+    //Radii definitions
     const diameter = 160934;
     const mileseg = 16093.4;
     //r1 = 10 mile radius
@@ -59,13 +61,14 @@
           alert("Sorry, this browser does not support geolocation!");
         }
 
-   function plusOne() {
-    
-    const pNum = participant++;
-    console.log(pNum);
-    localStorage.setItem("participant-number", pNum);
-    // window.location.href = "graph.html";
-  }
+    function plusOne() {
+      //Add up participant numbers
+      const pNum = participant++;
+      console.log(pNum);
+      localStorage.setItem("participant-number", pNum);
+      // window.location.href = "graph.html";
+    }
+  
     function onMapClick(e) {      
       var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
       var ang = L.GeometryUtil.angle(map, user, locs);  

@@ -42,17 +42,16 @@ function draw() {
     const response = await fetch('/api');
     const data = await response.json();
 
-    let o1 = 0;
-    let o2 = 0;
-    let o3 = 0;
-    let o4 = 0;
-    let o5 = 0;
-    let o6 = 0;
-    let o7 = 0;
-    let o8 = 0;
-    let o9 = 0;
-    let o10 = 0;
-    let o11 = 0;
+    let o1 = 5;
+    let o2 = 5;
+    let o3 = 5;
+    let o4 = 5;
+    let o5 = 5;
+    let o6 = 5;
+    let o7 = 5;
+    let o8 = 5;
+    let o9 = 5;
+    let o10 = 5;
 
     //Fetch data from click events
     for (item of data){
@@ -104,52 +103,113 @@ function draw() {
           o1++;
           let oPer1 = (o1 * 100)/pn; 
           let xop1 = (oPer1*255)/100;
-          console.log(o1);
-          console.log(oPer1);
-          console.log(xop1);
+          // console.log(o1);
+          // console.log(oPer1);
+          // console.log(xop1);
 
           noFill();
-          //add xop1 here
           stroke(136,250,78,xop1);
           strokeWeight(3);
           circle(x1, y1, radius);
         }
         else if(color == "#1DB100"){
+          o2++;
+          let oPer2 = (o2 * 100)/pn; 
+          let xop2 = (oPer2*255)/100;
+
+          noFill();
+          stroke(29,177,0,xop2);
+          strokeWeight(3);
+          circle(x1, y1, radius);
         }
 
         else if(color == "#00FDFF"){
-          
+          o3++;
+          let oPer3 = (o3 * 100)/pn; 
+          let xop3 = (oPer3*255)/100;
+
+          noFill();
+          stroke(0,253,255,xop3);
+          strokeWeight(3);
+          circle(x1, y1, radius);
         }
 
         else if(color == "#0096FF"){
-          
+          o4++;
+          let oPer4 = (o4 * 100)/pn; 
+          let xop4 = (oPer4*255)/100;
+
+          noFill();
+          stroke(0,150,255,xop4);
+          strokeWeight(3);
+          circle(x1, y1, radius);
         }
 
         else if(color == "#9437FF"){
-          
+          o5++;
+          let oPer5 = (o5 * 100)/pn; 
+          let xop5 = (oPer5*255)/100;
+
+          noFill();
+          stroke(148,55,255,xop5);
+          strokeWeight(3);
+          circle(x1, y1, radius);
         }
 
         else if(color == "#942193"){
-          
+          o6++;
+          let oPer6 = (o6 * 100)/pn; 
+          let xop6 = (oPer6*255)/100;
+
+          noFill();
+          stroke(148,33,147,xop6);
+          strokeWeight(3);
+          circle(x1, y1, radius);
         }
 
         else if(color == "#FF40FF"){
-          
+          o7++;
+          let oPer7 = (o7 * 100)/pn; 
+          let xop7 = (oPer7*255)/100;
+
+          noFill();
+          stroke(255,64,255,xop7);
+          strokeWeight(3);
+          circle(x1, y1, radius);
         }
 
         else if(color == "#FF2F92"){
-          
+          o8++;
+          let oPer8 = (o8 * 100)/pn; 
+          let xop8 = (oPer8*255)/100;
+
+          noFill();
+          stroke(255,64,255,xop8);
+          strokeWeight(3);
+          circle(x1, y1, radius);
         }
 
         else if(color == "#FF9300"){
-          
+          o9++;
+          let oPer9 = (o9 * 100)/pn; 
+          let xop9 = (oPer9*255)/100;
+
+          noFill();
+          stroke(255,147,0,xop9);
+          strokeWeight(3);
+          circle(x1, y1, radius);
         }
 
         else if(color == "#FFFB00"){
-          
-        }
+          o10++;
+          let oPer10 = (o10 * 100)/pn; 
+          let xop10 = (oPer10*255)/100;
 
-        else if(color == "#522E6E"){}
+          noFill();
+          stroke(255,251,0,xop10);
+          strokeWeight(3);
+          circle(x1, y1, radius);
+        }
       }
     }
   }

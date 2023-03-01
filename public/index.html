@@ -32,6 +32,7 @@
     //Radii definitions
     const diameter = 160934;
     const mileseg = 16093.4;
+    const r0 = mileseg/2;
     const r1 = diameter - mileseg * 9;
     const r2 = diameter - mileseg * 8;
     const r3 = diameter - mileseg * 7;
@@ -44,7 +45,8 @@
     var participant = 1;
   
     L.control.locate().addTo(map);
-    
+
+
     function showLocation(position) {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude
@@ -69,6 +71,7 @@
       var locs = {lat: e.latlng.lat, lon: e.latlng.lng};
       var ang = L.GeometryUtil.angle(map, user, locs);  
       var n = arePointsNear(user, locs, diameter);
+      var c0 = arePointsNear(user, locs, r0);
       var c1 = arePointsNear(user, locs, r1);
       var c2 = arePointsNear(user, locs, r2);
       var c3 = arePointsNear(user, locs, r3);
@@ -78,7 +81,9 @@
       var c7 = arePointsNear(user, locs, r7);
       var c8 = arePointsNear(user, locs, r8);
       var c9 = arePointsNear(user, locs, r9);
-  
+      const tnbc = JSON.parse(localStorage.getItem('Obj'));
+      const col = tnbc.bc;
+
       plusOne();
       // e.preventDefault();
       L.marker(e.latlng)
@@ -87,10 +92,25 @@
       if (n){
         L.marker(e.latlng)
         .addTo(map);
-        if (c1){
-          console.log('inside 10 mile radius');
+        if (c0){
+          console.log('inside 5 mile radius');
           var radius = 80;
-          var color = "#88FA4E";
+          var color = "#88FA4E"; 
+          var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, ang};
+          const options = {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+          const response = fetch('/api',options);
+        }
+
+        else if (c1){
+          console.log('inside 10 mile radius');
+          var radius = 1300;
+          var color = col;
           var data = {lat:e.latlng.lat, lon:e.latlng.lng, color, radius, ang};
           const options = {
             method: 'POST',

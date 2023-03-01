@@ -9,11 +9,8 @@ let topcolor, bottomcolor;
 let canvasWidth, canvasHeight;
 
 //Const to fetch Background Colour and Ticket Numbers
-//Save Participant Number Count in local storage
 const tnbc = JSON.parse(localStorage.getItem('Obj'));
 const pn = localStorage.getItem('participant-number');
-// console.log(tnbc);
-// console.log(pn);
 
 function setup() {
   canvasWidth = 1600;
@@ -31,6 +28,7 @@ function draw() {
     background(255);
     per = (pn*100)/tnbc.tn;
     gPer = (per*300)/100;
+    // col = tnbc.bc;
 
     let gradient = drawingContext.createLinearGradient(width/2, gPer, width/2, height*0.75);
     gradient.addColorStop(1,color(148, 23, 81));
@@ -73,14 +71,18 @@ function draw() {
       //If a point is within the 100 mile radius - i.e., regular rays within radii
       //Draw rays
       if(radius < 1000){  
-        noFill();
         stroke(color);
         strokeWeight(3);
         line(x1, y1, x2, y2);
+
+        if(color == "null"){  
+        stroke(color);
+        strokeWeight(3);
+        line(x1, y1, x2, y2);
+        }
       }   
 
       else {
-        noFill();
         stroke(color);
         strokeWeight(3);
         line(x1, y1, x2, y2);
@@ -103,9 +105,6 @@ function draw() {
           o1++;
           let oPer1 = (o1 * 100)/pn; 
           let xop1 = (oPer1*255)/100;
-          // console.log(o1);
-          // console.log(oPer1);
-          // console.log(xop1);
 
           noFill();
           stroke(136,250,78,xop1);
